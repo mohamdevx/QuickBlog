@@ -9,7 +9,7 @@ const App = () => {
       {/* Wrap all routes in <Routes> */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:id" element={<Blog />} />
       </Routes>
       </div>
   );
