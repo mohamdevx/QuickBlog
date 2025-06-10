@@ -1,17 +1,15 @@
 import mongoose from "mongoose";
 
 export const connectDB = async () => {
-    try {
-        mongoose.connection.on('connected', () => console.log(
-            "Database | Connected"
-        ));
+  try {
+    mongoose.connection.on('connected', () =>
+      console.log("Database | Connected")
+    );
 
-        await mongoose.connect(`${process.env.MONGODB_URI}/quickblog`);
-        
-    } catch (error) {
-        console.log(error.message);
-    }
+    await mongoose.connect(`${process.env.MONGODB_URI}/quickblog`);
+  } catch (error) {
+    console.log("DB connection error:", error.message);
+  }
 };
 
 export default connectDB;
-

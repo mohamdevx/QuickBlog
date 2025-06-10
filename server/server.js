@@ -3,25 +3,28 @@ import 'dotenv/config';
 import cors from 'cors';
 
 import connectDB from './configs/db.js';
+import adminRouter from './routes/adminRoutes.js';
 
-const app=express();
+const app = express();
 
+const startServer = async () => {
+  await connectDB();
 
-await connectDB()
-//middleware
-app.use(cors)
-app.use(express.json())
+  // Middleware
+  app.use(cors());
+  app.use(express.json());
 
-//routes
-app.get('/' ,(req,res)=>res.send("API is working"));
+  // Routes
+  app.get('/', (req, res) => res.send("API is working"));
+  app.use('/api/admin', adminRouter);
 
-const PORT=process.env.PORT || 3000;
+  const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
+  app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
-}
-);
+  });
+};
 
-// Export the app for testing or further configuration
+startServer();
+
 export default app;
-    
